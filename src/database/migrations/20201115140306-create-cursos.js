@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable('cursos', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -11,32 +11,26 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
+      duration: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
+
       },
-      password_hash: {
-        type: Sequelize.STRING,
+      date_init: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
-      phone: {
-        type: Sequelize.STRING,
+      date_finalized: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
-      cpf: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      provider: {
+      complete: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: false,
       },
-      actived: {
-        type: Sequelize.BOOLEAN,
+      orgao: {
+        type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: true,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -50,6 +44,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('cursos');
   },
 };

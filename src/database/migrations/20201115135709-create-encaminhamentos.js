@@ -1,42 +1,28 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable('encaminhamentos', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false,
       },
-      name: {
+      date: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      tipo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+
+      },
+      from: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
+      to: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
-      },
-      password_hash: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      phone: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      cpf: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      provider: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
-      },
-      actived: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -50,6 +36,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('encaminhamentos');
   },
 };
