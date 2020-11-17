@@ -3,15 +3,24 @@ import User from '../models/User';
 class UserController {
   // Cadatrao de usuários
   async store(request, response) {
-    const userExists = await User.findOne({
+    const checkEmailExists = await User.findOne({
       where: {
         email: request.body.email,
+      },
+    });
+
+    if (checkEmailExists) {
+      return response.status(400).json({ error: 'E-mail já existe na base de dados' });
+    }
+
+    const checkCPFExists = await User.findOne({
+      where: {
         cpf: request.body.cpf,
       },
     });
 
-    if (userExists) {
-      return response.status(400).json({ error: 'E-mail ou CPF já existe na base de dados' });
+    if (checkCPFExists) {
+      return response.status(400).json({ error: 'CPF já existe na base de dados' });
     }
 
     const user = await User.create(request.body);
