@@ -13,8 +13,8 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     'class-methods-use-this': 'off',
-    'no-param-reassign': 'off',
     camelcase: 'off',
+    'no-param-reassign': 'off',
     'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
     'no-console': 'off',
   },
