@@ -1,4 +1,5 @@
 import User from '../models/User';
+import Endereco from '../models/Endereco';
 
 class UserController {
   // Cadatrao de usuários
@@ -36,6 +37,10 @@ class UserController {
         actived: true,
       },
       attributes: ['id', 'name', 'email', 'phone', 'cpf', 'data_nascimento'],
+      include: [{
+        model: Endereco,
+        as: 'endereco',
+      }],
     });
 
     const alunosDesativados = await User.findAndCountAll({
@@ -105,14 +110,14 @@ class UserController {
     }
 
     if (aluno.cpf !== request.body.cpf) {
-      // Fazemos uma varredura em todos o usuários cadastrado se já usam este e-mail recebido
+    // Fazemos uma varredura em todos o usuários cadastrado se já usam este e-mail recebido
       const checkCPF = await User.findOne({
         where: {
           cpf: request.body.cpf,
 
         },
       });
-        //   Se já exisitir este CPF cadastrado, retornamos um staus bad
+      // Se já exisitir este CPF cadastrado, retornamos um staus bad
       if (checkCPF) {
         return response.status(401).json({ error: 'CPF já está em uso' });
       }

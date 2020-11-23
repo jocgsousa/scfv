@@ -3,6 +3,7 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import authMiddleware from './app/middlewares/auth';
 import authMiddlewareProvider from './app/middlewares/auhtProvider';
+import EnderecoController from './app/controllers/EnderecoController';
 
 const routes = new Router();
 
@@ -24,5 +25,8 @@ routes.put('/desativar/:id', UserController.desativar);
 
 // rota para atualizar dados do aluno
 routes.put('/atualizar/:id', UserController.atualizar);
+
+// rota para cadastra endereco dos alunos
+routes.post('/endereco', EnderecoController.store);
 
 export default routes;
