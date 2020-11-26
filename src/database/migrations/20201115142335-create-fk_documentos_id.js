@@ -1,6 +1,6 @@
 module.exports = {
     up: async (queryInterface, Sequelize) =>
-        queryInterface.addColumn('documentos', 'fk_documentos_id', {
+        queryInterface.addColumn('documentos', 'fk_users_id', {
             type: Sequelize.INTEGER,
 
             onUpdate: 'CASCADE',
@@ -13,5 +13,5 @@ module.exports = {
         }),
 
     down: async (queryInterface) =>
-        queryInterface.removeColumn('documentos', 'fk_documentos_id'),
+        queryInterface.removeColumn('documentos', 'fk_users_id'),
 };

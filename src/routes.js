@@ -57,4 +57,9 @@ routes.post(
     upload.single('file'),
     DocumentoController.store
 );
+// Lista os arquios com seus respectivos link de dowload
+routes.get('/documentos/:id', DocumentoController.index);
+
+routes.delete('/documentos/:id', DocumentoController.delete);
+
 export default routes;

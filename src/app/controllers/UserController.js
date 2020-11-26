@@ -1,6 +1,5 @@
 import User from '../models/User';
 import Endereco from '../models/Endereco';
-import Curso from '../models/Curso';
 
 class UserController {
     // Cadatrao de usuários
@@ -53,10 +52,6 @@ class UserController {
                 {
                     model: Endereco,
                     as: 'endereco',
-                },
-                {
-                    model: Curso,
-                    as: 'curso',
                 },
             ],
         });

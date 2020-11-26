@@ -32,10 +32,6 @@ class User extends Model {
             foreignKey: 'fk_enderecos_id',
             as: 'endereco',
         });
-        this.belongsTo(model.Curso, {
-            foreignKey: 'fk_cursos_id',
-            as: 'curso',
-        });
     }
 
     checkPassword(password) {
