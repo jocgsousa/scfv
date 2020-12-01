@@ -11,6 +11,7 @@ class User extends Model {
                 password_hash: Sequelize.STRING,
                 phone: Sequelize.STRING,
                 cpf: Sequelize.STRING,
+                sexo: Sequelize.STRING,
                 data_nascimento: Sequelize.STRING,
                 provider: Sequelize.BOOLEAN,
                 actived: Sequelize.BOOLEAN,
