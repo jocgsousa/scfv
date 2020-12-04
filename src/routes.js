@@ -23,6 +23,7 @@ routes.use(authMiddlewareProvider);
 
 routes.post('/alunos', UserController.store);
 routes.get('/alunos', UserController.index);
+routes.get('/search/:id', UserController.search);
 
 // rota para ativar aluno
 routes.put('/ativar/:id', UserController.ativar);

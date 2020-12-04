@@ -173,5 +173,12 @@ class UserController {
             data_nascimento,
         });
     }
+
+    async search(request, response) {
+        const { id } = request.params;
+        const user = await User.findByPk(id);
+
+        return response.json(user);
+    }
 }
 export default new UserController();
