@@ -32,7 +32,7 @@ routes.put('/ativar/:id', UserController.ativar);
 routes.put('/desativar/:id', UserController.desativar);
 
 // rota para atualizar dados do aluno
-routes.put('/atualizar/:id', UserController.atualizar);
+routes.post('/update', UserController.atualizar);
 
 // rota para cadastra endereco dos alunos
 routes.post('/endereco', EnderecoController.store);

@@ -1,6 +1,5 @@
-import { format } from 'date-fns';
+import { format, addDays } from 'date-fns';
 import pt from 'date-fns/locale/pt';
-
 import User from '../models/User';
 import Endereco from '../models/Endereco';
 
@@ -128,7 +127,7 @@ class UserController {
     }
 
     async atualizar(request, response) {
-        const { id } = request.params;
+        const { id } = request.body;
         // Buscamos as informações do aluno com o id recebido
         const aluno = await User.findByPk(id);
         // Verificamos se o e-mail recebido e dfirente do que já está cadastrado
@@ -202,9 +201,13 @@ class UserController {
                 .status(401)
                 .json({ error: 'Usuário não encontrado' });
         }
-        const formatedDate = format(user.data_nascimento, 'P', {
-            locale: pt,
-        });
+        const formatedDate = format(
+            addDays(user.data_nascimento, 1),
+            'YYY-MM-dd',
+            {
+                locale: pt,
+            }
+        );
 
         return response.json({
             id,
