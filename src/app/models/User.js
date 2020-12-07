@@ -1,5 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 import bcrypt from 'bcryptjs';
+import { format, parseISO } from 'date-fns';
 
 class User extends Model {
     static init(sequelize) {

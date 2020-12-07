@@ -1,3 +1,6 @@
+import { format } from 'date-fns';
+import pt from 'date-fns/locale/pt';
+
 import User from '../models/User';
 import Endereco from '../models/Endereco';
 
@@ -46,6 +49,7 @@ class UserController {
                 'email',
                 'phone',
                 'cpf',
+                'sexo',
                 'data_nascimento',
             ],
             include: [
@@ -176,9 +180,43 @@ class UserController {
 
     async search(request, response) {
         const { id } = request.params;
+        const {
+            name,
+            email,
+            cpf,
+            phone,
+            data_nascimento,
+            sexo,
+            endereco,
+        } = await User.findByPk(id, {
+            include: {
+                model: Endereco,
+                as: 'endereco',
+            },
+        });
+
         const user = await User.findByPk(id);
 
-        return response.json(user);
+        if (!name) {
+            return response
+                .status(401)
+                .json({ error: 'Usuário não encontrado' });
+        }
+        const formatedDate = format(user.data_nascimento, 'P', {
+            locale: pt,
+        });
+
+        return response.json({
+            id,
+            name,
+            email,
+            cpf,
+            phone,
+            data_nascimento,
+            formatedDate,
+            sexo,
+            endereco,
+        });
     }
 }
 export default new UserController();
