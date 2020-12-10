@@ -1,19 +1,26 @@
 import Sequelize, { Model } from 'sequelize';
 import bcrypt from 'bcryptjs';
-import { format, parseISO } from 'date-fns';
 
 class User extends Model {
     static init(sequelize) {
         super.init(
             {
+                paif: Sequelize.STRING,
+                nis: Sequelize.STRING,
                 name: Sequelize.STRING,
                 email: Sequelize.STRING,
                 password: Sequelize.VIRTUAL,
                 password_hash: Sequelize.STRING,
-                phone: Sequelize.STRING,
                 cpf: Sequelize.STRING,
+                rg: Sequelize.STRING,
                 sexo: Sequelize.STRING,
                 data_nascimento: Sequelize.STRING,
+                naturalidade: Sequelize.STRING,
+                name_mae: Sequelize.STRING,
+                name_resp: Sequelize.STRING,
+                cpf_resp: Sequelize.STRING,
+                rg_resp: Sequelize.STRING,
+                situacao: Sequelize.STRING,
                 provider: Sequelize.BOOLEAN,
                 actived: Sequelize.BOOLEAN,
             },
@@ -33,6 +40,11 @@ class User extends Model {
         this.belongsTo(model.Endereco, {
             foreignKey: 'fk_enderecos_id',
             as: 'endereco',
+        });
+
+        this.belongsTo(model.Contato, {
+            foreignKey: 'fk_contatos_id',
+            as: 'contato',
         });
     }
 

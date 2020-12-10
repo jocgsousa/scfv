@@ -2,6 +2,7 @@ import { format, addDays } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import User from '../models/User';
 import Endereco from '../models/Endereco';
+import Contato from '../models/Contato';
 
 class UserController {
     // Cadatrao de usuários
@@ -42,19 +43,14 @@ class UserController {
                 provider: false,
                 actived: true,
             },
-            attributes: [
-                'id',
-                'name',
-                'email',
-                'phone',
-                'cpf',
-                'sexo',
-                'data_nascimento',
-            ],
             include: [
                 {
                     model: Endereco,
                     as: 'endereco',
+                },
+                {
+                    model: Contato,
+                    as: 'contato',
                 },
             ],
         });
@@ -64,14 +60,6 @@ class UserController {
                 provider: false,
                 actived: false,
             },
-            attributes: [
-                'id',
-                'name',
-                'email',
-                'phone',
-                'cpf',
-                'data_nascimento',
-            ],
             include: [
                 {
                     model: Endereco,
@@ -147,7 +135,7 @@ class UserController {
             // Caso contrário continuamos com a requisição
         }
 
-        if (aluno.cpf !== request.body.cpf) {
+        if (aluno.cpf === request.body.cpf) {
             // Fazemos uma varredura em todos o usuários cadastrado se já usam este e-mail recebido
             const checkCPF = await User.findOne({
                 where: {
@@ -163,18 +151,9 @@ class UserController {
             // Caso contrário continuamos com a requisição
         }
 
-        const { name, cpf, data_nascimento, email, phone } = await aluno.update(
-            request.body
-        );
+        const alunoData = await aluno.update(request.body);
 
-        return response.json({
-            id,
-            name,
-            email,
-            cpf,
-            phone,
-            data_nascimento,
-        });
+        return response.json(alunoData);
     }
 
     async search(request, response) {
@@ -187,11 +166,21 @@ class UserController {
             data_nascimento,
             sexo,
             endereco,
-        } = await User.findByPk(id, {
-            include: {
-                model: Endereco,
-                as: 'endereco',
+            contato,
+        } = await User.findOne({
+            where: {
+                id,
             },
+            include: [
+                {
+                    model: Endereco,
+                    as: 'endereco',
+                },
+                {
+                    model: Contato,
+                    as: 'contato',
+                },
+            ],
         });
 
         const user = await User.findByPk(id);
@@ -219,6 +208,7 @@ class UserController {
             formatedDate,
             sexo,
             endereco,
+            contato,
         });
     }
 }

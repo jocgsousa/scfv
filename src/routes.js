@@ -8,6 +8,7 @@ import authMiddlewareProvider from './app/middlewares/auhtProvider';
 import EnderecoController from './app/controllers/EnderecoController';
 import CursoController from './app/controllers/CursoController';
 import DocumentoController from './app/controllers/DocumentoController';
+import ContatoController from './app/controllers/ContatoController';
 
 import multerConfig from './config/multerConfig';
 
@@ -32,7 +33,7 @@ routes.put('/ativar/:id', UserController.ativar);
 routes.put('/desativar/:id', UserController.desativar);
 
 // rota para atualizar dados do aluno
-routes.post('/update', UserController.atualizar);
+routes.put('/update', UserController.atualizar);
 
 // rota para cadastra endereco dos alunos
 routes.post('/endereco', EnderecoController.store);
@@ -62,5 +63,10 @@ routes.post(
 routes.get('/documentos/:id', DocumentoController.index);
 
 routes.delete('/documentos/:id', DocumentoController.delete);
+
+// Rotas para tratamento de dados de contato
+routes.post('/contatos', ContatoController.store);
+routes.put('/contatos', ContatoController.update);
+routes.delete('/contatos/:id', ContatoController.delete);
 
 export default routes;

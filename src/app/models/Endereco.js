@@ -4,6 +4,7 @@ class Endereco extends Model {
     static init(sequelize) {
         super.init(
             {
+                cep: Sequelize.STRING,
                 bairro: Sequelize.STRING,
                 rua: Sequelize.STRING,
                 cidade: Sequelize.STRING,
