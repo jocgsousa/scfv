@@ -135,7 +135,7 @@ class UserController {
             // Caso contrário continuamos com a requisição
         }
 
-        if (aluno.cpf === request.body.cpf) {
+        if (aluno.cpf !== request.body.cpf) {
             // Fazemos uma varredura em todos o usuários cadastrado se já usam este e-mail recebido
             const checkCPF = await User.findOne({
                 where: {
@@ -159,12 +159,22 @@ class UserController {
     async search(request, response) {
         const { id } = request.params;
         const {
+            paif,
+            nis,
             name,
             email,
             cpf,
+            rg,
             phone,
             data_nascimento,
             sexo,
+            naturalidade,
+            name_mae,
+            name_resp,
+            cpf_resp,
+            rg_resp,
+            situacao,
+
             endereco,
             contato,
         } = await User.findOne({
@@ -200,13 +210,22 @@ class UserController {
 
         return response.json({
             id,
+            paif,
+            nis,
             name,
             email,
             cpf,
+            rg,
             phone,
             data_nascimento,
             formatedDate,
             sexo,
+            naturalidade,
+            name_mae,
+            name_resp,
+            cpf_resp,
+            rg_resp,
+            situacao,
             endereco,
             contato,
         });

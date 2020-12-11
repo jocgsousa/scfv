@@ -28,7 +28,6 @@ module.exports = {
             },
             cpf: {
                 type: Sequelize.STRING,
-                allowNull: false,
             },
             rg: {
                 type: Sequelize.STRING,
