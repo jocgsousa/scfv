@@ -56,6 +56,9 @@ module.exports = {
             rg_resp: {
                 type: Sequelize.STRING,
             },
+            turno: {
+                type: Sequelize.STRING,
+            },
             situacao: {
                 type: Sequelize.STRING,
             },

@@ -1,4 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
+import { differenceInCalendarYears } from 'date-fns';
+
 import bcrypt from 'bcryptjs';
 
 class User extends Model {
@@ -20,9 +22,20 @@ class User extends Model {
                 name_resp: Sequelize.STRING,
                 cpf_resp: Sequelize.STRING,
                 rg_resp: Sequelize.STRING,
+                turno: Sequelize.STRING,
                 situacao: Sequelize.STRING,
                 provider: Sequelize.BOOLEAN,
                 actived: Sequelize.BOOLEAN,
+
+                idade: {
+                    type: Sequelize.VIRTUAL,
+                    get() {
+                        return differenceInCalendarYears(
+                            new Date(),
+                            this.data_nascimento
+                        );
+                    },
+                },
             },
             {
                 sequelize,

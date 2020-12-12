@@ -174,7 +174,7 @@ class UserController {
             cpf_resp,
             rg_resp,
             situacao,
-
+            turno,
             endereco,
             contato,
         } = await User.findOne({
@@ -228,6 +228,7 @@ class UserController {
             situacao,
             endereco,
             contato,
+            turno,
         });
     }
 }
