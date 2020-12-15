@@ -159,6 +159,7 @@ class UserController {
     async search(request, response) {
         const { id } = request.params;
         const {
+            idade,
             paif,
             nis,
             name,
@@ -208,8 +209,17 @@ class UserController {
             }
         );
 
+        const dataNascimento = format(
+            addDays(user.data_nascimento, 1),
+            'dd-MM-YYY',
+            {
+                locale: pt,
+            }
+        );
+
         return response.json({
             id,
+            idade,
             paif,
             nis,
             name,
@@ -219,6 +229,7 @@ class UserController {
             phone,
             data_nascimento,
             formatedDate,
+            dataNascimento,
             sexo,
             naturalidade,
             name_mae,
