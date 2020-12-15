@@ -4,6 +4,7 @@ class Curso extends Model {
     static init(sequelize) {
         super.init(
             {
+                id_users: Sequelize.INTEGER,
                 name: Sequelize.STRING,
                 duration: Sequelize.STRING,
                 date_init: Sequelize.DATE,

@@ -46,6 +46,8 @@ routes.delete('/endereco/:id', EnderecoController.delete);
 
 // rota para cadastrar cursos dos alunos
 routes.post('/cursos/:id', CursoController.store);
+// Rota para atualizar dados do curso cadastrado
+routes.put('/cursos/:id', CursoController.update);
 
 // rota para listar cursos dos alunos
 routes.get('/cursos/', CursoController.index);

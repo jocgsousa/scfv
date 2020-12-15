@@ -3,6 +3,7 @@ import pt from 'date-fns/locale/pt';
 import User from '../models/User';
 import Endereco from '../models/Endereco';
 import Contato from '../models/Contato';
+import Curso from '../models/Curso';
 
 class UserController {
     // Cadatrao de usuários
@@ -194,23 +195,23 @@ class UserController {
             ],
         });
 
-        const user = await User.findByPk(id);
+        const cursos = await Curso.findAll({
+            where: {
+                id_users: id,
+            },
+        });
 
         if (!name) {
             return response
                 .status(401)
                 .json({ error: 'Usuário não encontrado' });
         }
-        const formatedDate = format(
-            addDays(user.data_nascimento, 1),
-            'YYY-MM-dd',
-            {
-                locale: pt,
-            }
-        );
+        const formatedDate = format(addDays(data_nascimento, 1), 'YYY-MM-dd', {
+            locale: pt,
+        });
 
         const dataNascimento = format(
-            addDays(user.data_nascimento, 1),
+            addDays(data_nascimento, 1),
             'dd-MM-YYY',
             {
                 locale: pt,
@@ -240,6 +241,7 @@ class UserController {
             endereco,
             contato,
             turno,
+            cursos,
         });
     }
 }
