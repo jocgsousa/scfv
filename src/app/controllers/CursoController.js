@@ -14,7 +14,7 @@ class CursoController {
         const user = await User.findByPk(id);
 
         const curso = await Curso.create({
-            id_users: user.id,
+            user_id: user.id,
             name,
             duration,
             date_init,

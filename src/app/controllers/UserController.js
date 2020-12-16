@@ -197,7 +197,7 @@ class UserController {
 
         const cursos = await Curso.findAll({
             where: {
-                id_users: id,
+                user_id: id,
             },
         });
 
