@@ -18,5 +18,12 @@ class Curso extends Model {
         );
         return this;
     }
+
+    static associate(model) {
+        this.belongsTo(model.Users, {
+            foreignKey: 'fk_user_id',
+            as: 'users',
+        });
+    }
 }
 export default Curso;
