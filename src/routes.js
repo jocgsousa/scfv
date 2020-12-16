@@ -50,7 +50,7 @@ routes.post('/cursos/:id', CursoController.store);
 routes.put('/cursos/:id', CursoController.update);
 
 // rota para listar cursos dos alunos
-routes.get('/cursos/', CursoController.index);
+routes.get('/cursos/:id', CursoController.index);
 
 // rota para deletar cursos dos alunos
 routes.delete('/cursos/:id', CursoController.delete);

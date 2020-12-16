@@ -27,7 +27,9 @@ class CursoController {
     }
 
     async index(request, response) {
-        const cursos = await Curso.findAndCountAll();
+        const { id } = request.params;
+
+        const cursos = await Curso.findAll({ where: { user_id: id } });
         if (!cursos) {
             return response
                 .status(401)
