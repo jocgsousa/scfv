@@ -7,19 +7,34 @@ module.exports = {
                 primaryKey: true,
                 allowNull: false,
             },
+            user_id: {
+                type: Sequelize.INTEGER,
+            },
             date: {
                 type: Sequelize.DATE,
                 allowNull: false,
             },
-            tipo: {
+            unidade: {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            from: {
+            endereco_unidade: {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            to: {
+            objetivo: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            necessidades: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            obs: {
+                type: Sequelize.TEXT,
+                allowNull: false,
+            },
+            contato: {
                 type: Sequelize.STRING,
                 allowNull: false,
             },

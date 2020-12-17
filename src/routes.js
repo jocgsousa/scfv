@@ -9,6 +9,7 @@ import EnderecoController from './app/controllers/EnderecoController';
 import CursoController from './app/controllers/CursoController';
 import DocumentoController from './app/controllers/DocumentoController';
 import ContatoController from './app/controllers/ContatoController';
+import EncaminhamentoController from './app/controllers/EncaminhamentoController';
 
 import multerConfig from './config/multerConfig';
 
@@ -70,5 +71,12 @@ routes.delete('/documentos/:id', DocumentoController.delete);
 routes.post('/contatos', ContatoController.store);
 routes.put('/contatos', ContatoController.update);
 routes.delete('/contatos/:id', ContatoController.delete);
+
+// Rotas para cadatro de encaminhamentos dos usuárioss
+routes.post('/encaminhamentos', EncaminhamentoController.store);
+// Rota para deletar encaminhato de usuário
+routes.delete('/encaminhamentos/:id', EncaminhamentoController.delete);
+// Rota para listar os encaminhamentos
+routes.get('/encaminhamentos', EncaminhamentoController.index);
 
 export default routes;
