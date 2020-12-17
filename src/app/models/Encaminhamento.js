@@ -4,7 +4,6 @@ class Encaminhamento extends Model {
     static init(sequelize) {
         super.init(
             {
-                user_id: Sequelize.INTEGER,
                 date: Sequelize.DATE,
                 unidade: Sequelize.STRING,
                 endereco_unidade: Sequelize.STRING,
@@ -17,6 +16,10 @@ class Encaminhamento extends Model {
                 sequelize,
             }
         );
+    }
+
+    static associate(model) {
+        this.belongsTo(model.User, { foreignKey: 'fk_user_id', as: 'user' });
     }
 }
 export default Encaminhamento;

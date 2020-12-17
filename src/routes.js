@@ -78,5 +78,7 @@ routes.post('/encaminhamentos', EncaminhamentoController.store);
 routes.delete('/encaminhamentos/:id', EncaminhamentoController.delete);
 // Rota para listar os encaminhamentos
 routes.get('/encaminhamentos', EncaminhamentoController.index);
+// Rota para renderizar a ficha de encaminhamento do usuário selecionado
+routes.get('/fichaencaminhamento/:id', EncaminhamentoController.render);
 
 export default routes;
