@@ -81,4 +81,9 @@ routes.get('/encaminhamentos', EncaminhamentoController.index);
 // Rota para renderizar a ficha de encaminhamento do usuário selecionado
 routes.get('/fichaencaminhamento/:id', EncaminhamentoController.render);
 
+// Disponibilidade
+routes.get('/status', (request, response) => {
+    return response.json({ ok: true });
+});
+
 export default routes;
