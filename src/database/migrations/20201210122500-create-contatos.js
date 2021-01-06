@@ -9,7 +9,6 @@ module.exports = {
             },
             tel_fixo: {
                 type: Sequelize.STRING,
-                allowNull: false,
             },
             tel_celular: {
                 type: Sequelize.STRING,
