@@ -14,7 +14,7 @@ class UserController {
             },
         });
 
-        if (checkEmailExists) {
+        if (checkEmailExists && request.body.provider) {
             return response
                 .status(400)
                 .json({ error: 'E-mail já existe na base de dados' });
