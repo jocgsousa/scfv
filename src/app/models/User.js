@@ -1,5 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
-import { differenceInCalendarYears } from 'date-fns';
+import { differenceInCalendarYears, differenceInISOWeekYears } from 'date-fns';
 
 import bcrypt from 'bcryptjs';
 
@@ -30,7 +30,7 @@ class User extends Model {
                 idade: {
                     type: Sequelize.VIRTUAL,
                     get() {
-                        return differenceInCalendarYears(
+                        return differenceInISOWeekYears(
                             new Date(),
                             this.data_nascimento
                         );
