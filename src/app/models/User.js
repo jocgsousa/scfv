@@ -1,5 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
-import { differenceInCalendarYears, differenceInISOWeekYears } from 'date-fns';
+import { differenceInISOWeekYears } from 'date-fns';
 
 import bcrypt from 'bcryptjs';
 
