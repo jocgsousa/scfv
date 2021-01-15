@@ -8,28 +8,31 @@ import Curso from '../models/Curso';
 class UserController {
     // Cadatrao de usuários
     async store(request, response) {
-        const checkEmailExists = await User.findOne({
-            where: {
-                email: request.body.email,
-            },
-        });
-
-        if (checkEmailExists && request.body.provider) {
-            return response
-                .status(400)
-                .json({ error: 'E-mail já existe na base de dados' });
+        if (request.body.email) {
+            const checkEmailExists = await User.findOne({
+                where: {
+                    email: request.body.email,
+                },
+            });
+            if (checkEmailExists && request.body.provider) {
+                return response
+                    .status(400)
+                    .json({ error: 'E-mail já existe na base de dados' });
+            }
         }
 
-        const checkCPFExists = await User.findOne({
-            where: {
-                cpf: request.body.cpf,
-            },
-        });
+        if (request.body.cpf) {
+            const checkCPFExists = await User.findOne({
+                where: {
+                    cpf: request.body.cpf,
+                },
+            });
 
-        if (checkCPFExists) {
-            return response
-                .status(400)
-                .json({ error: 'CPF já existe na base de dados' });
+            if (checkCPFExists) {
+                return response
+                    .status(400)
+                    .json({ error: 'CPF já existe na base de dados' });
+            }
         }
 
         const user = await User.create(request.body);
