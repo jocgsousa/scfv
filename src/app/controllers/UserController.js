@@ -57,6 +57,8 @@ class UserController {
                     as: 'contato',
                 },
             ],
+
+            order: ['name'],
         });
 
         const alunosDesativados = await User.findAndCountAll({
